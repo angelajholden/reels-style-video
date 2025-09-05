@@ -1,0 +1,33 @@
+[
+	{
+		"id": "r001",
+		"video": {
+			"src": "/media/reels/wool-spin-01.mp4",
+			"poster": "/media/reels/wool-spin-01.jpg",
+			"captions": "/media/reels/wool-spin-01.vtt",
+			"duration": 18.4,
+			"aspectRatio": "9:16",
+			"preloadHint": "next"
+		},
+		"author": {
+			"handle": "fiberandkraft",
+			"displayName": "Fiber & Kraft",
+			"avatar": "/media/avatars/angela.jpg"
+		},
+		"music": {
+			"title": "Sunlit Studio",
+			"artist": "A. Holden",
+			"license": "royalty-free",
+			"provider": "Artlist"
+		},
+		"meta": {
+			"caption": "Spinning a soft merino blend for a cozy fall knit.",
+			"hashtags": ["#spinning", "#fiberarts", "#handmade"],
+			"likeCount": 124,
+			"commentCount": 9,
+			"isLiked": false,
+			"createdAt": "2025-08-22T14:05:00Z",
+			"shareUrl": "https://example.com/reel/r001"
+		}
+	}
+]
