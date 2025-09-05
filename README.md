@@ -21,7 +21,7 @@ _This project is free and open-source, and focused on helping new frontend devel
 
 ## 🔗 See the site live
 
--   [Live demo on Github Pages](https://angelajholden.github.io/)
+-   [Live demo on Github Pages](https://angelajholden.github.io/reels-style-video)
 
 ---
 
@@ -30,7 +30,7 @@ _This project is free and open-source, and focused on helping new frontend devel
 ### ✅ Git Clone
 
 ```bash
-git clone git@github.com:angelajholden/[your-repo-name].git
+git clone git@github.com:angelajholden/reels-style-video.git
 ```
 
 ### ✅ Live Server
