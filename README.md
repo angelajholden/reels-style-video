@@ -25,6 +25,12 @@ _This project is free and open-source, and focused on helping new frontend devel
 
 ---
 
+## 🎶 Music provided by Artlist.io
+
+Licensed for use by Angela J Holden (Oct 3, 2024)
+
+---
+
 ## 🚀 Quick Start
 
 ### ✅ Git Clone
