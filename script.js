@@ -30,7 +30,7 @@ function initReels() {
 			// Build each reel section from JSON
 			const frag = document.createDocumentFragment();
 			list.forEach((item) => {
-				const sec = document.createElement("section");
+				const sec = document.createElement("div");
 				sec.className = "reel";
 				sec.dataset.id = item.id;
 
@@ -234,30 +234,46 @@ function initReels() {
 		if (next && next.preload !== "auto") next.preload = "auto";
 	}
 
+	// Handles like animation and count for a reel section
+	function triggerLike(reel) {
+		const heartIcon = reel.querySelector(".heart-icon");
+		const heartButton = reel.querySelector(".heart_button");
+		const likesCountElement = reel.querySelector(".likes-count");
+		// Store likes per reel using a data attribute
+		let likes = parseInt(reel.dataset.likes || "0", 10);
+		if (likes === 0) {
+			likes = 1;
+			heartIcon.classList.add("liked");
+			heartButton.classList.add("liked");
+			setTimeout(() => {
+				heartIcon.classList.remove("liked");
+			}, 600);
+		} else {
+			likes = 0;
+			heartButton.classList.remove("liked");
+		}
+		reel.dataset.likes = likes;
+		likesCountElement.textContent = `${likes}`;
+	}
+
+	// Setup like interaction for desktop (dblclick)
 	function likeHeart() {
 		const reelVideo = document.querySelectorAll(".reel");
-		const heartIcon = document.querySelector(".heart-icon");
-		const heartButton = document.querySelector(".heart_button");
-		const likesCountElement = document.querySelector(".likes-count");
-		let likes = 0;
-
 		reelVideo.forEach((reel) => {
-			reel.addEventListener("dblclick", () => {
-				if (likes === 0) {
-					likes++;
-					heartIcon.classList.add("liked");
-					heartButton.classList.add("liked");
-
-					// Remove the 'liked' class after the animation completes
-					setTimeout(() => {
-						heartIcon.classList.remove("liked");
-					}, 600); // Matches the animation duration
-				} else {
-					likes = 0;
-					heartButton.classList.remove("liked");
-				}
-				likesCountElement.textContent = `${likes}`;
-			});
+			// Attach dblclick to the overlay, which is visually on top
+			const overlay = reel.querySelector(".overlay");
+			if (overlay) {
+				overlay.addEventListener("dblclick", (e) => {
+					e.preventDefault();
+					triggerLike(reel);
+				});
+			} else {
+				// Fallback: attach to reel section if overlay missing
+				reel.addEventListener("dblclick", (e) => {
+					e.preventDefault();
+					triggerLike(reel);
+				});
+			}
 		});
 	}
 
@@ -303,7 +319,7 @@ function initReels() {
 	}
 
 	function setupTapToMute() {
-		const DOUBLE_TAB_MS = 250;
+		const DOUBLE_TAB_MS = 280;
 
 		sections.forEach((sec, idx) => {
 			let lastTapAt = 0;
@@ -319,10 +335,10 @@ function initReels() {
 					const delta = now - lastTapAt;
 
 					if (delta < DOUBLE_TAB_MS) {
-						// DOUBLE TAP detected — we'll wire "like" here next weekend
+						// DOUBLE TAP detected — trigger like animation and count
 						clearTimeout(singleTimer);
 						lastTapAt = 0;
-
+						triggerLike(sec);
 						return;
 					}
 
